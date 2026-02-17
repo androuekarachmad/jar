@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toples Kebahagiaan 🫙</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Caveat:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        /* ╔══════════════════════════════════════════════════════════════╗
+   ║  RESET & TOKENS                                              ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            /* palette */
+            --c-pink-50: #fff0f6;
+            --c-pink-100: #ffe0ee;
+            --c-pink-200: #ffb3d1;
+            --c-pink-300: #ff80b5;
+            --c-pink-400: #f857a6;
+            --c-pink-500: #e91e8c;
+            --c-rose-200: #fecdd3;
+            --c-rose-300: #fda4af;
+            --c-rose-400: #fb7185;
+            --c-mauve: #f5d0fe;
+            --c-mauve-d: #c084fc;
+            --c-cream: #fef9f0;
+            --c-ink: #3d1a2e;
+            --c-ink-soft: #7a3d5c;
+            --c-ink-muted: #b07898;
+
+            /* shadow tokens */
+            --shadow-soft: 0 4px 24px rgba(220, 40, 130, 0.10);
+            --shadow-card: 0 12px 40px rgba(180, 20, 100, 0.13), 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow-float: 0 24px 64px rgba(180, 20, 100, 0.18), 0 6px 16px rgba(0, 0, 0, 0.06);
+
+            /* type */
+            --font-body: 'Nunito', sans-serif;
+            --font-hand: 'Caveat', cursive;
+            --font-light: 'DM Sans', sans-serif;
+
+            /* timing */
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            color: var(--c-ink);
+            /* Layered gradient background */
+            background:
+                radial-gradient(ellipse 90% 55% at 15% 5%, rgba(255, 176, 210, 0.50) 0%, transparent 55%),
+                radial-gradient(ellipse 70% 50% at 88% 90%, rgba(245, 208, 254, 0.45) 0%, transparent 55%),
+                radial-gradient(ellipse 60% 40% at 75% 15%, rgba(255, 193, 224, 0.30) 0%, transparent 50%),
+                radial-gradient(ellipse 100% 100% at 50% 50%, #fdf4f8 0%, #fce9f3 100%);
+        }
+
+        /* ── Page grain overlay ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23g)' opacity='0.038'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* ╔══════════════════════════════════════════════════════════════╗
+   ║  AMBIENT BLOBS                                               ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: blobFloat ease-in-out infinite alternate;
+        }
+
+        .blob-a {
+            width: clamp(280px, 50vw, 480px);
+            height: clamp(280px, 50vw, 480px);
+            background: radial-gradient(circle, rgba(255, 160, 210, 0.42) 0%, rgba(255, 160, 210, 0) 70%);
+            top: -15%;
+            left: -10%;
+            animation-duration: 16s;
+            animation-delay: 0s;
+            filter: blur(50px);
+        }
+
+        .blob-b {
+            width: clamp(240px, 40vw, 380px);
+            height: clamp(240px, 40vw, 380px);
+            background: radial-gradient(circle, rgba(245, 208, 254, 0.48) 0%, rgba(245, 208, 254, 0) 70%);
+            bottom: -12%;
+            right: -8%;
+            animation-duration: 20s;
+            animation-delay: -6s;
+            filter: blur(55px);
+        }
+
+        .blob-c {
+            width: clamp(160px, 25vw, 260px);
+            height: clamp(160px, 25vw, 260px);
+            background: radial-gradient(circle, rgba(253, 186, 116, 0.22) 0%, rgba(253, 186, 116, 0) 70%);
+            top: 38%;
+            right: 8%;
+            animation-duration: 13s;
+            animation-delay: -10s;
+            filter: blur(40px);
+        }
+
+        .blob-d {
+            width: clamp(140px, 22vw, 220px);
+            height: clamp(140px, 22vw, 220px);
+            background: radial-gradient(circle, rgba(129, 220, 190, 0.18) 0%, rgba(129, 220, 190, 0) 70%);
+            bottom: 22%;
+            left: 5%;
+            animation-duration: 18s;
+            animation-delay: -3s;
+            filter: blur(40px);
+        }
+
+        @keyframes blobFloat {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(22px, 16px) scale(1.06);
+            }
+        }
+
+        /* ╔══════════════════════════════════════════════════════════════╗
+   ║  FLOATING PARTICLES                                          ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0;
+            animation: particleRise linear infinite;
+        }
+
+        @keyframes particleRise {
+            0% {
+                transform: translateY(105vh) rotate(0deg) scale(0.7);
+                opacity: 0;
+            }
+
+            6% {
+                opacity: 0.65;
+            }
+
+            94% {
+                opacity: 0.35;
+            }
+
+            100% {
+                transform: translateY(-8vh) rotate(420deg) scale(1.1);
+                opacity: 0;
+            }
+        }
+
+        /* ╔══════════════════════════════════════════════════════════════╗
+   ║  LAYOUT                                                      ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+        .page-wrap {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 440px;
+            padding: 24px 20px 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+
+        /* ╔══════════════════════════════════════════════════════════════╗
+   ║  HEADER                                                      ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeSlideDown 0.7s var(--ease-spring) both;
+        }
+
+        @keyframes fadeSlideDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.78);
+            border: 1.5px solid rgba(248, 87, 166, 0.22);
+            border-radius: 99px;
+            padding: 5px 15px;
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            font-weight: 800;
+            color: var(--c-pink-500);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 11px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 2px 12px rgba(233, 30, 140, 0.09);
+        }
+
+        .title {
+            font-size: clamp(1.9rem, 5.5vw, 2.5rem);
+            font-weight: 900;
+            line-height: 1.08;
+            margin-bottom: 9px;
+            background: linear-gradient(145deg, #d6176b 0%, #e91e8c 45%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 3px 10px rgba(220, 40, 130, 0.18));
+        }
+
+        .subtitle {
+            font-family: var(--font-light);
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--c-ink-soft);
+            letter-spacing: 0.01em;
+            line-height: 1.5;
+        }
+
+        /* ╔══════════════════════════════════════════════════════════════╗
+   ║  JAR — 3D GLASSMORPHISM                                      ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+        .jar-scene {
+            position: relative;
+            cursor: pointer;
+            perspective: 1000px;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            animation: fadeSlideUp 0.8s 0.15s var(--ease-spring) both;
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                transform: translateY(28px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .jar-outer {
+            position: relative;
+            width: 190px;
+            height: 255px;
+            filter:
+                drop-shadow(0 32px 56px rgba(190, 30, 110, 0.22)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.09));
+            transition: filter 0.35s var(--ease-smooth), transform 0.18s var(--ease-smooth);
+        }
+
+        .jar-scene:hover .jar-outer {
+            filter:
+                drop-shadow(0 40px 70px rgba(190, 30, 110, 0.30)) drop-shadow(0 8px 18px rgba(0, 0, 0, 0.11));
+        }
+
+        .jar-scene:active .jar-outer {
+            transform: scale(0.963);
+        }
+
+        /* ── LID ────────────────────────────────────────────────────── */
+        .jar-lid {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120%;
+            height: 42px;
+            border-radius: 14px 14px 7px 7px;
+            z-index: 22;
+            overflow: hidden;
+            transition: transform 0.45s var(--ease-spring);
+
+            background: linear-gradient(170deg,
+                    #ffaec9 0%,
+                    #f472b6 30%,
+                    #db2777 65%,
+                    #be185d 100%);
+            box-shadow:
+                0 7px 20px rgba(219, 39, 119, 0.38),
+                0 2px 5px rgba(0, 0, 0, 0.14),
+                inset 0 1.5px 0 rgba(255, 255, 255, 0.60),
+                inset 0 -3px 8px rgba(0, 0, 0, 0.14);
+        }
+
+        /* lid specular — broad glow */
+        .jar-lid::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 8%;
+            width: 42%;
+            height: 55%;
+            background: radial-gradient(ellipse at 40% 30%, rgba(255, 255, 255, 0.68) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 99px;
+            transform: rotate(-18deg);
+            pointer-events: none;
+        }
+
+        /* lid rim underside */
+        .jar-lid::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 82%;
+            height: 10px;
+            background: linear-gradient(to bottom, #9a0f4e, #700a38);
+            border-radius: 0 0 5px 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.22);
+        }
+
+        .jar-lid-text {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-hand);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.22);
+            gap: 5px;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .jar-scene:hover .jar-lid {
+            transform: translateX(-50%) translateY(-15px) rotate(-4deg);
+        }
+
+        /* ── BODY ───────────────────────────────────────────────────── */
+        .jar-body {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 89%;
+            height: 88%;
+            border-radius: 18px 18px 34px 34px;
+            overflow: hidden;
+            z-index: 10;
+
+            /* Deep glassmorphism */
+            background:
+                linear-gradient(155deg,
+                    rgba(255, 255, 255, 0.78) 0%,
+                    rgba(255, 220, 238, 0.42) 28%,
+                    rgba(255, 255, 255, 0.20) 55%,
+                    rgba(253, 164, 175, 0.32) 80%,
+                    rgba(255, 255, 255, 0.25) 100%);
+            backdrop-filter: blur(22px) saturate(1.7) brightness(1.04);
+            -webkit-backdrop-filter: blur(22px) saturate(1.7) brightness(1.04);
+
+            /* Anisotropic border */
+            border-top: 2px solid rgba(255, 255, 255, 0.92);
+            border-left: 2px solid rgba(255, 255, 255, 0.78);
+            border-right: 1.5px solid rgba(255, 255, 255, 0.28);
+            border-bottom: 1.5px solid rgba(255, 255, 255, 0.20);
+
+            /* Layered inset shadows for 3D volume */
+            box-shadow:
+                /* outer */
+                0 20px 60px rgba(200, 30, 110, 0.16),
+                0 4px 12px rgba(0, 0, 0, 0.05),
+                /* inner left bright — main light source */
+                inset 8px 0 28px rgba(255, 255, 255, 0.60),
+                /* inner right ambient pink */
+                inset -6px 0 22px rgba(219, 39, 119, 0.07),
+                /* inner top rim glow */
+                inset 0 10px 24px rgba(255, 255, 255, 0.42),
+                /* inner bottom — liquid depth */
+                inset 0 -16px 32px rgba(200, 30, 110, 0.14),
+                /* inner overall volume */
+                inset 0 0 1px rgba(255, 255, 255, 0.18);
+        }
+
+        /* PRIMARY SPECULAR — tall bright streak */
+        .jar-body::before {
+            content: '';
+            position: absolute;
+            top: 3%;
+            left: 7%;
+            width: 15%;
+            height: 65%;
+            background: linear-gradient(178deg,
+                    rgba(255, 255, 255, 0.98) 0%,
+                    rgba(255, 255, 255, 0.62) 25%,
+                    rgba(255, 255, 255, 0.18) 65%,
+                    rgba(255, 255, 255, 0) 100%);
+            border-radius: 99px;
+            filter: blur(2.5px);
+            pointer-events: none;
+        }
+
+        /* SECONDARY SPECULAR — small sharp bright dot top-right */
+        .jar-body::after {
+            content: '';
+            position: absolute;
+            top: 5%;
+            right: 12%;
+            width: 10%;
+            height: 22%;
+            background: radial-gradient(ellipse at 38% 28%,
+                    rgba(255, 255, 255, 0.92) 0%,
+                    rgba(255, 255, 255, 0.28) 48%,
+                    rgba(255, 255, 255, 0) 100%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* RIM HIGHLIGHT — bright arc at very top */
+        .jar-rim {
+            position: absolute;
+            top: 0;
+            left: 9%;
+            right: 9%;
+            height: 7px;
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0.15),
+                    rgba(255, 255, 255, 0.96),
+                    rgba(255, 255, 255, 0.15));
+            border-radius: 0 0 99px 99px;
+            z-index: 16;
+            pointer-events: none;
+        }
+
+        /* LIQUID POOL at bottom */
+        .jar-liquid {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 26%;
+            background: linear-gradient(to top,
+                    rgba(248, 87, 166, 0.24) 0%,
+                    rgba(248, 87, 166, 0.10) 50%,
+                    rgba(248, 87, 166, 0) 100%);
+            pointer-events: none;
+            z-index: 12;
+        }
+
+        .jar-liquid::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0),
+                    rgba(255, 255, 255, 0.55),
+                    rgba(255, 255, 255, 0));
+            border-radius: 99px;
+        }
+
+        /* LABEL STICKER */
+        .jar-sticker {
+            position: absolute;
+            top: 42%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-2.8deg);
+            z-index: 15;
+            background: rgba(255, 255, 255, 0.94);
+            border-radius: 12px;
+            padding: 9px 16px;
+            text-align: center;
+            border: 2px dashed rgba(248, 87, 166, 0.45);
+            box-shadow: 0 5px 16px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1);
+        }
+
+        .jar-sticker-main {
+            display: block;
+            font-family: var(--font-hand);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--c-pink-500);
+            line-height: 1.2;
+        }
+
+        .jar-sticker-sub {
+            display: block;
+            font-size: 0.58rem;
+            font-weight: 800;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: var(--c-ink-muted);
+            margin-top: 2px;
+        }
+
+        /* PAPERS INSIDE */
+        .paper {
+            position: absolute;
+            border-radius: 3px;
+            box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.13);
+            transition: transform 0.45s var(--ease-spring);
+        }
+
+        .paper::before,
+        .paper::after {
+            content: '';
+            position: absolute;
+            left: 16%;
+            height: 2px;
+            background: rgba(0, 0, 0, 0.08);
+            border-radius: 1px;
+        }
+
+        .paper::before {
+            width: 68%;
+            top: 28%;
+        }
+
+        .paper::after {
+            width: 50%;
+            top: 54%;
+        }
+
+        .jar-scene:hover .paper {
+            transform: scale(1.08) rotate(calc(var(--r)*1.5deg)) translateY(-4px);
+        }
+
+        .pa {
+            width: 40px;
+            height: 31px;
+            background: #fef9c3;
+            bottom: 6%;
+            left: 9%;
+            --r: 13;
+            transform: rotate(13deg);
+        }
+
+        .pb {
+            width: 35px;
+            height: 29px;
+            background: #fce7f3;
+            bottom: 12%;
+            right: 12%;
+            --r: -9;
+            transform: rotate(-9deg);
+        }
+
+        .pc {
+            width: 37px;
+            height: 28px;
+            background: #dcfce7;
+            bottom: 22%;
+            left: 16%;
+            --r: 36;
+            transform: rotate(36deg);
+        }
+
+        .pd {
+            width: 33px;
+            height: 27px;
+            background: #dbeafe;
+            bottom: 31%;
+            right: 16%;
+            --r: -22;
+            transform: rotate(-22deg);
+        }
+
+        .pe {
+            width: 37px;
+            height: 29px;
+            background: #ede9fe;
+            bottom: 43%;
+            left: 12%;
+            --r: 9;
+            transform: rotate(9deg);
+        }
+
+        .pf {
+            width: 31px;
+            height: 26px;
+            background: #fef3c7;
+            bottom: 48%;
+            right: 10%;
+            --r: -31;
+            transform: rotate(-31deg);
+        }
+
+        /* JAR SHADOW on floor */
+        .jar-floor-shadow {
+            width: 148px;
+            height: 22px;
+            margin: 8px auto 0;
+            background: radial-gradient(ellipse, rgba(200, 30, 110, 0.22) 0%, transparent 70%);
+            animation: shadowPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes shadowPulse {
+
+            0%,
+            100% {
+                transform: scaleX(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scaleX(1.06);
+                opacity: 0.8;
+            }
+        }
+
+        /* TAP HINT */
+        .tap-hint {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: var(--c-ink-muted);
+            margin-top: 14px;
+            animation: hintBreath 2.4s ease-in-out infinite;
+        }
+
+        @keyframes hintBreath {
+
+            0%,
+            100% {
+                opacity: 0.4;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.02);
+            }
+        }
+
+        .hint-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--c-pink-400);
+            animation: dotPop 2.4s ease-in-out infinite;
+        }
+
+        @keyframes dotPop {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.7);
+                background: var(--c-pink-500);
+            }
+        }
+
+        /* ╔══════════════════════════════════════════════════════════════╗
+   ║  CONTACT CARD                                                ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+        .contact-wrap {
+            margin-top: 30px;
+            width: 100%;
+            animation: fadeSlideUp 0.9s 0.3s var(--ease-spring) both;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.74);
+            backdrop-filter: blur(18px) saturate(1.4);
+            border: 1.5px solid rgba(255, 255, 255, 0.88);
+            border-radius: 24px;
+            padding: 18px 22px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+            text-align: center;
+        }
+
+        .contact-eyebrow {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--c-ink-muted);
+            letter-spacing: 0.04em;
+        }
+
+        .wa-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: #fff;
+            text-decoration: none;
+            padding: 13px 26px;
+            border-radius: 99px;
+            font-family: var(--font-body);
+            font-size: 0.88rem;
+            font-weight: 800;
+            letter-spacing: 0.01em;
+            transition: transform 0.2s var(--ease-spring), box-shadow 0.2s;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wa-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+            border-radius: 99px;
+            pointer-events: none;
+        }
+
+        .wa-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 28px rgba(37, 211, 102, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .wa-btn:active {
+            transform: scale(0.97);
+        }
+
+        .wa-btn svg {
+            flex-shrink: 0;
+        }
+
+        .contact-note {
+            font-family: var(--font-light);
+            font-size: 0.7rem;
+            font-style: italic;
+            color: var(--c-ink-muted);
+        }
+
+        /* ╔══════════════════════════════════════════════════════════════╗
+   ║  MODAL OVERLAY                                               ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(42, 6, 28, 0.50);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            overscroll-behavior: contain;
+        }
+
+        .overlay.open {
+            display: flex;
+        }
+
+        /* ╔══════════════════════════════════════════════════════════════╗
+   ║  MOOD SELECTION CARD                                         ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+        .mood-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 32px;
+            padding: 28px 22px;
+            width: 100%;
+            max-width: 368px;
+            box-shadow:
+                0 48px 96px rgba(42, 6, 28, 0.30),
+                0 0 0 1px rgba(255, 255, 255, 0.5);
+            animation: cardPop 0.42s var(--ease-spring) both;
+        }
+
+        @keyframes cardPop {
+            from {
+                transform: scale(0.80) translateY(28px);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .mood-head {
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .mood-head-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .mood-head h3 {
+            font-size: 1.22rem;
+            font-weight: 900;
+            color: var(--c-ink);
+            margin-bottom: 5px;
+        }
+
+        .mood-head p {
+            font-family: var(--font-light);
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: var(--c-ink-muted);
+            line-height: 1.45;
+        }
+
+        .mood-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mood-item {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 14px 16px;
+            border-radius: 18px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-align: left;
+            transition: transform 0.18s var(--ease-spring), box-shadow 0.18s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mood-item::after {
+            content: '›';
+            position: absolute;
+            right: 16px;
+            font-size: 1.1rem;
+            opacity: 0.35;
+            transition: transform 0.18s, opacity 0.18s;
+        }
+
+        .mood-item:hover {
+            transform: translateX(5px) scale(1.01);
+        }
+
+        .mood-item:hover::after {
+            transform: translateX(3px);
+            opacity: 0.7;
+        }
+
+        .mood-item:active {
+            transform: scale(0.98);
+        }
+
+        .mood-ico {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.45rem;
+            flex-shrink: 0;
+        }
+
+        .mood-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .mood-title {
+            font-size: 0.92rem;
+        }
+
+        .mood-desc {
+            font-size: 0.7rem;
+            font-weight: 500;
+            opacity: 0.65;
+        }
+
+        .m-green {
+            background: #f0fdf4;
+            color: #14532d;
+            border-color: #bbf7d0;
+        }
+
+        .m-green .mood-ico {
+            background: #dcfce7;
+        }
+
+        .m-yellow {
+            background: #fffbeb;
+            color: #78350f;
+            border-color: #fde68a;
+        }
+
+        .m-yellow .mood-ico {
+            background: #fef9c3;
+        }
+
+        .m-pink {
+            background: #fdf2f8;
+            color: #831843;
+            border-color: #f9a8d4;
+        }
+
+        .m-pink .mood-ico {
+            background: #fce7f3;
+        }
+
+        .m-blue {
+            background: #eff6ff;
+            color: #1e3a8a;
+            border-color: #bfdbfe;
+        }
+
+        .m-blue .mood-ico {
+            background: #dbeafe;
+        }
+
+        .dismiss {
+            display: block;
+            width: 100%;
+            margin-top: 14px;
+            padding: 11px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--c-ink-muted);
+            border-radius: 14px;
+            transition: background 0.18s, color 0.18s;
+        }
+
+        .dismiss:hover {
+            background: #fdf2f8;
+            color: var(--c-ink-soft);
+        }
+
+        /* ╔══════════════════════════════════════════════════════════════╗
+   ║  NOTE / MESSAGE CARD                                         ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+        .note-scene {
+            position: relative;
+            width: 100%;
+            max-width: 390px;
+            animation: noteDrop 0.55s var(--ease-spring) both;
+        }
+
+        @keyframes noteDrop {
+            from {
+                transform: translateY(40px) rotate(-5deg);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0) rotate(-1.8deg);
+                opacity: 1;
+            }
+        }
+
+        /* ─ TAPE ─────────────────────────────────────────────────────── */
+        .tape {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%) rotate(2deg);
+            width: 115px;
+            height: 32px;
+            z-index: 30;
+
+            /* Frosted tape body */
+            background: linear-gradient(180deg,
+                    rgba(255, 255, 255, 0.12) 0%,
+                    rgba(255, 255, 255, 0.58) 28%,
+                    rgba(255, 255, 255, 0.68) 50%,
+                    rgba(255, 255, 255, 0.54) 72%,
+                    rgba(255, 255, 255, 0.10) 100%);
+            backdrop-filter: blur(4px) brightness(1.06);
+            -webkit-backdrop-filter: blur(4px) brightness(1.06);
+            border-radius: 3px;
+
+            /* Realistic tape shadows */
+            box-shadow:
+                0 3px 7px rgba(0, 0, 0, 0.12),
+                0 0 0 0.5px rgba(255, 255, 255, 0.72),
+                inset 0 1.5px 0 rgba(255, 255, 255, 0.92),
+                inset 0 -1.5px 0 rgba(0, 0, 0, 0.06),
+                inset 4px 0 8px rgba(255, 255, 255, 0.45),
+                inset -4px 0 8px rgba(255, 255, 255, 0.45);
+
+            border: 0.5px solid rgba(210, 195, 220, 0.38);
+            overflow: hidden;
+        }
+
+        /* tape grain */
+        .tape::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.80' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23t)' opacity='0.08'/%3E%3C/svg%3E");
+            border-radius: 3px;
+            pointer-events: none;
+        }
+
+        /* tape left fold shadow */
+        .tape::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 12px;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0));
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* ─ PAPER ────────────────────────────────────────────────────── */
+        .note-card {
+            background: #fefdf6;
+            border-radius: 5px 5px 7px 7px;
+            padding: 44px 28px 28px;
+            position: relative;
+            overflow: hidden;
+
+            box-shadow:
+                0 10px 28px rgba(0, 0, 0, 0.15),
+                0 3px 8px rgba(0, 0, 0, 0.08),
+                5px 6px 0 rgba(0, 0, 0, 0.04),
+                7px 7px 14px rgba(0, 0, 0, 0.05);
+
+            /* subtle right/bottom curl */
+            border-right: 1px solid rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Paper grain texture */
+        .note-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.62' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='500' height='500' filter='url(%23p)' opacity='0.06'/%3E%3C/svg%3E");
+            border-radius: inherit;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Ruled lines layer */
+        .note-lines {
+            position: absolute;
+            inset: 0;
+            background-image: repeating-linear-gradient(to bottom,
+                    transparent,
+                    transparent 31px,
+                    rgba(110, 130, 220, 0.085) 31px,
+                    rgba(110, 130, 220, 0.085) 32px);
+            background-position: 0 62px;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Left margin line */
+        .note-margin {
+            position: absolute;
+            top: 0;
+            left: 48px;
+            bottom: 0;
+            width: 1.5px;
+            background: rgba(248, 87, 166, 0.20);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Punch holes */
+        .note-holes {
+            position: absolute;
+            top: 13px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 88px;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .note-hole {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.055);
+            box-shadow: inset 0 1.5px 4px rgba(0, 0, 0, 0.18), 0 0 0 2px rgba(255, 255, 255, 0.55);
+        }
+
+        /* Folded corner (bottom-right) */
+        .corner-fold {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 28px;
+            height: 28px;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .corner-fold::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 28px 28px;
+            border-color: transparent transparent #e8e2d0 transparent;
+            filter: drop-shadow(-2px -2px 3px rgba(0, 0, 0, 0.08));
+        }
+
+        .corner-fold::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 14px 14px;
+            border-color: transparent transparent rgba(0, 0, 0, 0.05) transparent;
+        }
+
+        /* Note content sits above grain layers */
+        .note-body {
+            position: relative;
+            z-index: 5;
+        }
+
+        .note-tag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--c-ink-muted);
+            margin-bottom: 14px;
+        }
+
+        .note-tag-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+            opacity: 0.5;
+        }
+
+        .note-text {
+            font-family: var(--font-hand);
+            font-size: clamp(1.3rem, 4vw, 1.52rem);
+            font-weight: 600;
+            line-height: 2.05rem;
+            color: #352030;
+            margin-bottom: 22px;
+            min-height: 96px;
+        }
+
+        .note-hr {
+            height: 1px;
+            background: rgba(0, 0, 0, 0.07);
+            margin: 14px 0;
+        }
+
+        .note-foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .note-sign {
+            font-family: var(--font-hand);
+            font-size: 1.05rem;
+            color: var(--c-ink-muted);
+        }
+
+        .note-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .note-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 17px;
+            border-radius: 99px;
+            border: 2px solid;
+            background: white;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-size: 0.76rem;
+            font-weight: 800;
+            transition: transform 0.18s var(--ease-spring), box-shadow 0.18s;
+        }
+
+        .note-btn:hover {
+            transform: scale(1.06);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+        }
+
+        .note-btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn-swap {
+            border-color: #f9a8d4;
+            color: var(--c-pink-500);
+        }
+
+        .btn-done {
+            border-color: #e5e7eb;
+            color: #9ca3af;
+        }
+
+        /* Color per-mood */
+        .nc-green {
+            background: #f0fdf4;
+        }
+
+        .nc-yellow {
+            background: #fefce8;
+        }
+
+        .nc-pink {
+            background: #fdf2f8;
+        }
+
+        .nc-blue {
+            background: #eff6ff;
+        }
+
+        /* ╔══════════════════════════════════════════════════════════════╗
+   ║  CONFETTI ENGINE                                             ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+        .cft {
+            position: fixed;
+            pointer-events: none;
+            z-index: 400;
+            animation: cftFly linear forwards;
+            border-radius: 2px;
+            will-change: transform, opacity;
+        }
+
+        @keyframes cftFly {
+            0% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+
+            75% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--tx), var(--ty)) rotate(var(--tr)) scale(var(--ts));
+                opacity: 0;
+            }
+        }
+
+        .cft-emoji {
+            position: fixed;
+            pointer-events: none;
+            z-index: 400;
+            animation: cftEmoji ease-out forwards;
+            will-change: transform, opacity;
+        }
+
+        @keyframes cftEmoji {
+            0% {
+                transform: translate(0, 0) scale(0.2);
+                opacity: 1;
+            }
+
+            40% {
+                transform: translate(var(--ex), var(--ey1)) scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--ex), var(--ey2)) scale(0.7);
+                opacity: 0;
+            }
+        }
+
+        /* ╔══════════════════════════════════════════════════════════════╗
+   ║  MICRO BURSTS (heart/star on jar click)                      ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+        .burst {
+            position: fixed;
+            pointer-events: none;
+            z-index: 300;
+            animation: burstFly ease-out forwards;
+        }
+
+        @keyframes burstFly {
+            0% {
+                transform: translate(0, 0) scale(0.3);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--bx), var(--by)) scale(1.1);
+                opacity: 0;
+            }
+        }
+
+        /* ╔══════════════════════════════════════════════════════════════╗
+   ║  WIGGLE                                                      ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+        @keyframes wiggle {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            15% {
+                transform: rotate(-8deg);
+            }
+
+            30% {
+                transform: rotate(8deg);
+            }
+
+            45% {
+                transform: rotate(-5deg);
+            }
+
+            60% {
+                transform: rotate(5deg);
+            }
+
+            75% {
+                transform: rotate(-2deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .wiggling {
+            animation: wiggle 0.55s ease-in-out;
+        }
+
+        /* ╔══════════════════════════════════════════════════════════════╗
+   ║  RESPONSIVE                                                  ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+        @media (max-height:680px) {
+            .jar-outer {
+                width: 158px;
+                height: 213px;
+            }
+
+            .title {
+                font-size: 1.85rem;
+            }
+
+            .header {
+                margin-bottom: 20px;
+            }
+
+            .contact-wrap {
+                margin-top: 18px;
+            }
+
+            .page-wrap {
+                padding: 14px 18px 22px;
+            }
+        }
+
+        @media (max-width:380px) {
+            .page-wrap {
+                padding: 16px 14px 24px;
+            }
+
+            .mood-card {
+                padding: 22px 16px;
+            }
+
+            .note-card {
+                padding: 40px 20px 22px;
+            }
+        }
+
+        /* ╔══════════════════════════════════════════════════════════════╗
+   ║  LOADING OVERLAY                                             ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+        .loader-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--c-pink-50);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s var(--ease-smooth), visibility 0.6s;
+        }
+
+        .loader-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+            animation: pulseLoader 1.8s infinite ease-in-out;
+        }
+
+        @keyframes pulseLoader {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .loader-icon {
+            font-size: 3.5rem;
+            margin-bottom: 12px;
+            display: block;
+            filter: drop-shadow(0 4px 12px rgba(233, 30, 140, 0.2));
+        }
+
+        .loader-text {
+            font-family: var(--font-hand);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--c-pink-500);
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── LOADING OVERLAY ── -->
+    <div id="loader-overlay" class="loader-overlay">
+        <div class="loader-content">
+            <div class="loader-icon">🫙</div>
+            <div class="loader-text">Memuat kebahagiaan...</div>
+        </div>
+    </div>
+
+    <!-- ── BLOBS ── -->
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="blob blob-c"></div>
+    <div class="blob blob-d"></div>
+
+    <!-- ── PARTICLES ── -->
+    <div id="particles" aria-hidden="true"></div>
+
+    <!-- ═══════════════════ PAGE ═══════════════════ -->
+    <div class="page-wrap">
+
+        <!-- HEADER -->
+        <header class="header">
+            <div class="badge">✨ Support System</div>
+            <h1 class="title">Toples Kebahagiaan</h1>
+            <p class="subtitle">Ada satu tempat kecil yang isinya cuma buat kamu.&nbsp;💌</p>
+        </header>
+
+        <!-- JAR -->
+        <div class="jar-scene" id="jar-scene" onclick="onJarTap(event)" role="button" tabindex="0"
+            aria-label="Buka toples untuk mendapatkan pesan penyemangat"
+            onkeydown="if(event.key==='Enter'||event.key===' ')onJarTap(event)">
+
+            <div class="jar-outer" id="jar-outer">
+
+                <!-- Lid -->
+                <div class="jar-lid">
+                    <div class="jar-lid-text">
+                        <span>🔒</span><span>Ketuk untuk buka</span>
+                    </div>
+                </div>
+
+                <!-- Body -->
+                <div class="jar-body">
+                    <div class="jar-rim"></div>
+                    <div class="jar-liquid"></div>
+
+                    <!-- Sticker label -->
+                    <div class="jar-sticker">
+                        <span class="jar-sticker-main">For You ❤️</span>
+                        <span class="jar-sticker-sub">love notes inside</span>
+                    </div>
+
+                    <!-- Papers -->
+                    <div class="paper pa"></div>
+                    <div class="paper pb"></div>
+                    <div class="paper pc"></div>
+                    <div class="paper pd"></div>
+                    <div class="paper pe"></div>
+                    <div class="paper pf"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="jar-floor-shadow"></div>
+
+        <p class="tap-hint">
+            <span class="hint-dot"></span>
+            Ketuk toplesnya untuk mulai
+            <span class="hint-dot"></span>
+        </p>
+
+        <!-- CONTACT CARD -->
+        <div class="contact-wrap">
+            <div class="contact-card">
+                <p class="contact-eyebrow">Kalau butuh lebih dari sekedar pesan&nbsp;🤍</p>
+                <a class="wa-btn"
+                    href="https://wa.me/6281234567890?text=Halo%2C%20aku%20lagi%20butuh%20teman%20ngobrol..."
+                    target="_blank" rel="noopener noreferrer">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                    </svg>
+                    Hubungi aku sekarang
+                </a>
+                <p class="contact-note">Aku standby 24/7 buat kamu. Apapun itu, nggak perlu ragu. 🌙</p>
+            </div>
+        </div>
+
+    </div><!-- /page-wrap -->
+
+    <!-- ══════════════ MODAL 1: MOOD SELECTION ══════════════ -->
+    <div class="overlay" id="ov-mood" role="dialog" aria-modal="true" aria-label="Pilih perasaan">
+        <div class="mood-card">
+            <div class="mood-head">
+                <span class="mood-head-icon">🫙</span>
+                <h3>Lagi gimana perasaanmu?</h3>
+                <p>Jujur aja. Di sini nggak ada yang menghakimi.</p>
+            </div>
+
+            <div class="mood-list">
+
+                <button class="mood-item m-green" onclick="pickMood('capek')" aria-label="Lagi capek banget">
+                    <div class="mood-ico">🍃</div>
+                    <div class="mood-copy">
+                        <span class="mood-title">Lagi capek banget</span>
+                        <span class="mood-desc">Mau istirahat tapi nggak bisa berhenti</span>
+                    </div>
+                </button>
+
+                <button class="mood-item m-yellow" onclick="pickMood('cemas')" aria-label="Sedikit cemas">
+                    <div class="mood-ico">⚡</div>
+                    <div class="mood-copy">
+                        <span class="mood-title">Sedikit cemas / takut</span>
+                        <span class="mood-desc">Ada yang bikin kepala penuh hari ini</span>
+                    </div>
+                </button>
+
+                <button class="mood-item m-pink" onclick="pickMood('spesial')" aria-label="Butuh validasi">
+                    <div class="mood-ico">💖</div>
+                    <div class="mood-copy">
+                        <span class="mood-title">Butuh divalidasi (spesial)</span>
+                        <span class="mood-desc">Pengen diingetin betapa berharganya kamu</span>
+                    </div>
+                </button>
+
+                <button class="mood-item m-blue" onclick="pickMood('sepi')" aria-label="Merasa sepi">
+                    <div class="mood-ico">🌊</div>
+                    <div class="mood-copy">
+                        <span class="mood-title">Merasa sepi / kesepian</span>
+                        <span class="mood-desc">Butuh kehangatan dan koneksi hari ini</span>
+                    </div>
+                </button>
+
+            </div>
+
+            <button class="dismiss" onclick="closeOverlay('ov-mood')">Nanti aja deh, makasih ya 🙏</button>
+        </div>
+    </div>
+
+    <!-- ══════════════ MODAL 2: NOTE MESSAGE ══════════════ -->
+    <div class="overlay" id="ov-note" role="dialog" aria-modal="true" aria-label="Pesan untukmu">
+        <div class="note-scene" id="note-scene">
+            <div class="tape"></div>
+            <div class="note-card" id="note-card">
+                <div class="note-lines"></div>
+                <div class="note-margin"></div>
+                <div class="note-holes">
+                    <div class="note-hole"></div>
+                    <div class="note-hole"></div>
+                </div>
+                <div class="corner-fold"></div>
+
+                <div class="note-body">
+                    <div class="note-tag" id="note-tag">
+                        <div class="note-tag-dot"></div>
+                        <span id="note-tag-label"></span>
+                    </div>
+                    <p class="note-text" id="note-text">...</p>
+                    <div class="note-hr"></div>
+                    <div class="note-foot">
+                        <span class="note-sign">— untukmu 🌸</span>
+                        <div class="note-actions">
+                            <button class="note-btn btn-swap" onclick="getAnother()" aria-label="Pesan lain">🔀 Pesan
+                                lain</button>
+                            <button class="note-btn btn-done" onclick="closeOverlay('ov-note')"
+                                aria-label="Simpan pesan">✔ Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ════════════════════════════════════════════════════
+           DATA — 4 moods × 8 messages each
+        ═══════════════════════════════════════════════════ */
+        const MOODS = {
+
+            capek: {
+                label: 'Untuk kamu yang lagi capek',
+                emoji: '🍃',
+                noteClass: 'nc-green',
+                tagColor: '#166534',
+                confetti: ['#86efac', '#4ade80', '#bbf7d0', '#fef9c3', '#fff', '#d9f99d'],
+                msgs: [
+                    "Istirahat bukan kelemahan. Berhenti sebentar itu justru bagian dari bertahan — dan kamu udah sangat baik dalam bertahan.",
+                    "Tubuhmu bukan mesin. Kalau hari ini hanya bisa tiduran dan napas dalam-dalam, itu sudah lebih dari cukup.",
+                    "Capek yang kamu rasain itu nyata, dan valid. Nggak perlu menjelaskan ke siapapun kenapa kamu butuh jeda.",
+                    "Kamu sudah menanggung banyak hal dengan diam-diam. Mau nangis juga nggak apa-apa — itu bukan runtuh, itu ngebuang beban.",
+                    "Dunia nggak akan berhenti kalau kamu istirahat sehari. Tapi hidupmu bisa jadi jauh lebih baik kalau kamu mulai mendengarkan dirimu sendiri.",
+                    "Jangan paksa dirimu lari kalau kakimu butuh duduk. Pelan-pelan asal tetap melangkah, itu sudah luar biasa.",
+                    "Produktivitas bukan satu-satunya ukuran hidupmu. Kamu berharga bahkan di hari yang kamu habiskan hanya untuk memulihkan diri.",
+                    "Tarik napas pelan-pelan... tahan sebentar... lalu hembuskan semua yang berat itu. Satu kali dulu. Kamu bisa."
+                ]
+            },
+
+            cemas: {
+                label: 'Untuk kamu yang lagi cemas',
+                emoji: '⚡',
+                noteClass: 'nc-yellow',
+                tagColor: '#92400e',
+                confetti: ['#fde68a', '#fbbf24', '#fef9c3', '#fed7aa', '#fff', '#fca5a1'],
+                msgs: [
+                    "Rasa cemasmu itu nyata, tapi dia bukan nabi. Dia sering berbohong tentang seberapa buruk sesuatu akan terjadi.",
+                    "Kamu nggak perlu tahu semua jawabannya sekarang. Fokus aja ke satu langkah kecil yang paling depan — cuma itu.",
+                    "Otak yang cemas sering membesar-besarkan ancaman. Tanya dirimu: seberapa besar kemungkinan hal terburuk itu beneran terjadi?",
+                    "Ketidakpastian itu melelahkan. Tapi kamu sudah melewati hari-hari berat sebelumnya, dan kamu masih di sini.",
+                    "Nggak semua yang belum terjadi harus sudah kamu selesaikan sekarang. Masa depan bisa ditangani di waktunya.",
+                    "Jangan terlalu keras sama dirimu kalau kamu takut. Keberanian bukan berarti nggak ada rasa takut — tapi tetap melangkah meskipun takut.",
+                    "Kamu sudah sangat jauh lebih tangguh dari yang kamu sadari. Buktinya: kamu masih di sini, masih mencoba.",
+                    "Kalau kepala terlalu penuh, tulis aja. Keluarkan dari sana. Seringkali rasa cemas mengecil setelah diberi nama."
+                ]
+            },
+
+            spesial: {
+                label: 'Validasi spesial untukmu',
+                emoji: '💖',
+                noteClass: 'nc-pink',
+                tagColor: '#9d174d',
+                confetti: ['#fbcfe8', '#f9a8d4', '#f472b6', '#e879f9', '#fff', '#c084fc', '#fce7f3'],
+                msgs: [
+                    "Kehadiranmu bukan sesuatu yang biasa. Kamu punya cara berpikir, cara peduli, dan cara hadir yang nggak bisa ditiru orang lain.",
+                    "Kamu layak dicintai bukan karena prestasi atau produktivitasmu — tapi karena kamu adalah kamu. Apa adanya.",
+                    "Ada orang-orang yang harinya jadi lebih baik hanya karena kamu ada. Mungkin kamu belum sadar betapa dalamnya dampak itu.",
+                    "Versi aslimu — yang ragu-ragu, yang capek, yang belum sempurna — itu sudah lebih dari cukup. Kamu nggak perlu jadi siapa-siapa selain dirimu.",
+                    "Kalau ada yang pernah bikin kamu merasa kurang: itu bukan cerminan nilaimu. Itu cerminan keterbatasan mereka.",
+                    "Kamu berhak mendapat orang-orang yang hadir beneran — yang dengerin bukan cuma untuk balas, tapi karena mereka peduli.",
+                    "Kamu berharga. Kamu berhak bahagia. Dan kamu berhak mendapat yang terbaik — bukan sisa, bukan setengah-setengah.",
+                    "Aku senang banget kamu ada. Dunia ini genuinely lebih baik karena ada kamu di dalamnya. Bukan basa-basi."
+                ]
+            },
+
+            sepi: {
+                label: 'Untuk kamu yang merasa sepi',
+                emoji: '🌊',
+                noteClass: 'nc-blue',
+                tagColor: '#1e3a8a',
+                confetti: ['#93c5fd', '#60a5fa', '#bfdbfe', '#a5f3fc', '#fff', '#c7d2fe'],
+                msgs: [
+                    "Rasa sepi itu bukan tanda bahwa kamu nggak berharga — itu tanda bahwa kamu merindukan koneksi yang bermakna. Dan itu manusiawi banget.",
+                    "Meski hari ini terasa sunyi, ada yang diam-diam memikirkanmu. Lebih dari yang kamu bayangkan.",
+                    "Kesepian bukan hukuman. Kadang itu hanya jeda — sebelum orang yang tepat masuk ke hidupmu.",
+                    "Kamu nggak harus selalu kuat sendirian. Kalau mau cerita, ada yang mau dengerin — tanpa judgement, tanpa tergesa.",
+                    "Kirim pesan duluan ke orang yang kamu rindukan. Mungkin dia juga lagi menunggu kamu duluan yang mulai.",
+                    "Ada orang yang matanya langsung cerah kalau namamu muncul. Kamu berarti buat seseorang, bahkan saat kamu nggak merasa seperti itu.",
+                    "Hari yang sepi itu nggak berarti hidupmu sepi. Kadang kita butuh keheningan dulu sebelum hal-hal indah datang.",
+                    "Kamu layak punya orang-orang yang benar-benar hadir. Jangan berhenti mencari mereka — karena mereka juga sedang mencarimu."
+                ]
+            }
+
+        };
+
+        /* ════════════════════════════════════════════════════
+           STATE
+        ═══════════════════════════════════════════════════ */
+        let activeMood = null;
+        let usedIdx = { capek: [], cemas: [], spesial: [], sepi: [] };
+
+        /* ════════════════════════════════════════════════════
+           BACKGROUND PARTICLES
+        ═══════════════════════════════════════════════════ */
+        const PART_POOL = ['✨', '💖', '🌸', '⭐', '🌷', '💕', '🎀', '🍀', '🌟', '💫', '🩷', '🌺'];
+        const partWrap = document.getElementById('particles');
+
+        function mkParticle() {
+            const el = document.createElement('div');
+            el.className = 'particle';
+            el.textContent = PART_POOL[Math.floor(Math.random() * PART_POOL.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.animationDuration = (9 + Math.random() * 12) + 's';
+            el.style.animationDelay = (Math.random() * 4) + 's';
+            el.style.fontSize = (0.7 + Math.random() * 0.9) + 'rem';
+            partWrap.appendChild(el);
+            el.addEventListener('animationend', () => el.remove(), { once: true });
+        }
+        setInterval(mkParticle, 1700);
+        for (let i = 0; i < 8; i++) setTimeout(mkParticle, i * 250);
+
+        /* ════════════════════════════════════════════════════
+           JAR CLICK
+        ═══════════════════════════════════════════════════ */
+        function onJarTap(e) {
+            const outer = document.getElementById('jar-outer');
+            if (outer.classList.contains('wiggling')) return;
+
+            outer.classList.add('wiggling');
+            outer.addEventListener('animationend', () => outer.classList.remove('wiggling'), { once: true });
+
+            const cx = e.clientX || window.innerWidth / 2;
+            const cy = e.clientY || window.innerHeight / 2;
+            spawnBurst(cx, cy, 7);
+
+            setTimeout(() => openOverlay('ov-mood'), 360);
+        }
+
+        /* ════════════════════════════════════════════════════
+           MICRO BURST (on jar tap)
+        ═══════════════════════════════════════════════════ */
+        function spawnBurst(x, y, n) {
+            const pool = ['💖', '✨', '🌸', '💕', '⭐', '🌟', '🩷'];
+            for (let i = 0; i < n; i++) {
+                const el = document.createElement('div');
+                el.className = 'burst';
+                el.textContent = pool[Math.floor(Math.random() * pool.length)];
+                el.style.left = (x - 14 + (Math.random() - 0.5) * 60) + 'px';
+                el.style.top = (y - 14 + (Math.random() - 0.5) * 40) + 'px';
+                el.style.setProperty('--bx', ((Math.random() - 0.5) * 140) + 'px');
+                el.style.setProperty('--by', (-(55 + Math.random() * 90)) + 'px');
+                el.style.animationDuration = (0.7 + Math.random() * 0.45) + 's';
+                el.style.animationDelay = (i * 0.065) + 's';
+                el.style.fontSize = (1.1 + Math.random() * 0.7) + 'rem';
+                document.body.appendChild(el);
+                el.addEventListener('animationend', () => el.remove(), { once: true });
+            }
+        }
+
+        /* ════════════════════════════════════════════════════
+           CONFETTI EXPLOSION
+        ═══════════════════════════════════════════════════ */
+        function launchConfetti(palette) {
+            const cx = window.innerWidth / 2;
+            const cy = window.innerHeight / 2;
+            const CNT = 100;
+            const SHAPES = ['rect', 'circle', 'ribbon', 'square'];
+
+            for (let i = 0; i < CNT; i++) {
+                const el = document.createElement('div');
+                el.className = 'cft';
+
+                const shape = SHAPES[Math.floor(Math.random() * SHAPES.length)];
+                const sz = 5 + Math.random() * 9;
+                const color = palette[Math.floor(Math.random() * palette.length)];
+                const angle = Math.random() * 360;
+                const speed = 260 + Math.random() * 420;
+                const rad = angle * Math.PI / 180;
+                const drift = (Math.random() - 0.5) * 260;
+                const tx = Math.cos(rad) * speed + drift;
+                const ty = Math.sin(rad) * speed + speed * 0.45;
+                const tr = (Math.random() - 0.5) * 1100 + 'deg';
+                const ts = 0.4 + Math.random() * 0.4;
+                const dur = 0.85 + Math.random() * 0.85;
+
+                switch (shape) {
+                    case 'rect':
+                        el.style.width = sz + 'px';
+                        el.style.height = sz * 0.45 + 'px';
+                        el.style.borderRadius = '2px';
+                        break;
+                    case 'circle':
+                        el.style.width = sz + 'px';
+                        el.style.height = sz + 'px';
+                        el.style.borderRadius = '50%';
+                        break;
+                    case 'ribbon':
+                        el.style.width = sz * 0.28 + 'px';
+                        el.style.height = sz * 2.0 + 'px';
+                        el.style.borderRadius = '1px';
+                        break;
+                    default: // square
+                        el.style.width = sz * 0.8 + 'px';
+                        el.style.height = sz * 0.8 + 'px';
+                        el.style.borderRadius = '2px';
+                }
+
+                el.style.background = color;
+                el.style.left = cx + 'px';
+                el.style.top = cy + 'px';
+                el.style.setProperty('--tx', tx + 'px');
+                el.style.setProperty('--ty', ty + 'px');
+                el.style.setProperty('--tr', tr);
+                el.style.setProperty('--ts', ts);
+                el.style.animationDuration = dur + 's';
+                el.style.animationDelay = (i * 0.007) + 's';
+
+                document.body.appendChild(el);
+                el.addEventListener('animationend', () => el.remove(), { once: true });
+            }
+
+            /* Emoji burst from centre */
+            const EMJ = ['🎉', '✨', '💖', '🌸', '⭐', '🥳', '💫', '🎊', '🩷', '🌺'];
+            for (let i = 0; i < 12; i++) {
+                const el = document.createElement('div');
+                el.className = 'cft-emoji';
+                el.textContent = EMJ[Math.floor(Math.random() * EMJ.length)];
+                el.style.fontSize = (1.1 + Math.random() * 1.2) + 'rem';
+                el.style.left = (cx - 20 + (Math.random() - 0.5) * 220) + 'px';
+                el.style.top = (cy - 20 + (Math.random() - 0.5) * 140) + 'px';
+                el.style.setProperty('--ex', ((Math.random() - 0.5) * 280) + 'px');
+                el.style.setProperty('--ey1', (-(80 + Math.random() * 90)) + 'px');
+                el.style.setProperty('--ey2', (30 + Math.random() * 120) + 'px');
+                el.style.animationDuration = (0.65 + Math.random() * 0.55) + 's';
+                el.style.animationDelay = (0.04 + i * 0.055) + 's';
+                document.body.appendChild(el);
+                el.addEventListener('animationend', () => el.remove(), { once: true });
+            }
+        }
+
+        /* ════════════════════════════════════════════════════
+           OVERLAYS
+        ═══════════════════════════════════════════════════ */
+        function openOverlay(id) {
+            const el = document.getElementById(id);
+            el.style.display = 'flex';
+            // force reflow then add class so CSS transition can fire
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => el.classList.add('open'));
+            });
+        }
+        function closeOverlay(id) {
+            const el = document.getElementById(id);
+            el.classList.remove('open');
+            el.style.display = '';
+        }
+
+        /* ════════════════════════════════════════════════════
+           PICK MOOD → SHOW NOTE
+        ═══════════════════════════════════════════════════ */
+        function pickMood(key) {
+            closeOverlay('ov-mood');
+            activeMood = key;
+
+            const mood = MOODS[key];
+
+            /* anti-repeat shuffle */
+            if (!usedIdx[key].length || usedIdx[key].length >= mood.msgs.length) usedIdx[key] = [];
+            const remaining = mood.msgs.map((_, i) => i).filter(i => !usedIdx[key].includes(i));
+            const idx = remaining[Math.floor(Math.random() * remaining.length)];
+            usedIdx[key].push(idx);
+
+            /* populate note */
+            document.getElementById('note-tag-label').textContent = mood.label;
+            document.getElementById('note-tag-label').parentElement.style.color = mood.tagColor;
+            document.getElementById('note-text').textContent = mood.msgs[idx];
+
+            const card = document.getElementById('note-card');
+            card.className = 'note-card ' + mood.noteClass;
+
+            /* re-trigger entrance animation */
+            const scene = document.getElementById('note-scene');
+            scene.style.animation = 'none';
+            void scene.offsetWidth;
+            scene.style.animation = '';
+
+            openOverlay('ov-note');
+
+            /* 🎉 confetti after tiny delay */
+            setTimeout(() => launchConfetti(mood.confetti), 100);
+        }
+
+        function getAnother() {
+            if (!activeMood) return;
+            closeOverlay('ov-note');
+            setTimeout(() => pickMood(activeMood), 180);
+        }
+
+        /* ════════════════════════════════════════════════════
+           CLOSE ON BACKDROP TAP + ESC
+        ═══════════════════════════════════════════════════ */
+        document.querySelectorAll('.overlay').forEach(ov => {
+            ov.addEventListener('click', e => {
+                if (e.target === ov) closeOverlay(ov.id);
+            });
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key !== 'Escape') return;
+            ['ov-note', 'ov-mood'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el.classList.contains('open')) closeOverlay(id);
+            });
+        });
+
+        /* ════════════════════════════════════════════════════
+           LOADING EXIT
+        ═══════════════════════════════════════════════════ */
+        window.addEventListener('load', () => {
+            // Little delay to ensure the animation is seen and feels smooth
+            setTimeout(() => {
+                document.getElementById('loader-overlay').classList.add('hidden');
+            }, 1200);
+        });
+    </script>
+</body>
+
+</html>
